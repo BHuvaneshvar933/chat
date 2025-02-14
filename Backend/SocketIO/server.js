@@ -16,8 +16,8 @@ const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/chatapp";
 
 mongoose
   .connect(MONGO_URI)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch((err) => console.error("❌ MongoDB Connection Error:", err));
+  .then(() => console.log(" Connected to MongoDB"))
+  .catch((err) => console.error(" MongoDB Connection Error:", err));
 
 app.use(express.json());
 app.use(cookieParser());
@@ -74,11 +74,11 @@ app.post("/api/user/login", (req, res) => {
   // Generate JWT Token
   const token = jwt.sign({ username }, process.env.JWT_SECRET || "your_secret_key", { expiresIn: "1h" });
 
-  // ✅ Set HTTP-Only Cookie
+  //  Set HTTP-Only Cookie
   res.cookie("token", token, {
-    httpOnly: true, // ✅ Prevent client-side access
-    secure: false, // ❌ Change to `true` if using HTTPS
-    sameSite: "Lax", // ✅ Change to "None" if cross-origin
+    httpOnly: true, //  Prevent client-side access
+    secure: false, //  Change to `true` if using HTTPS
+    sameSite: "Lax", //  Change to "None" if cross-origin
   });
 
   res.json({ message: "Login successful" });
